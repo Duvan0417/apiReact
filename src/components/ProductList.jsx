@@ -6,6 +6,7 @@ const ProductList = ({ onAgregarAlCarrito }) => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const cargarProductos = async () => {
@@ -45,6 +46,10 @@ const ProductList = ({ onAgregarAlCarrito }) => {
     }, 100);
   };
 
+  const productosFiltrados = productos.filter(producto =>
+    producto.nombre.toLowerCase().includes(search.toLowerCase())
+  );
+
   if (loading) {
     return (
       <div className="product-list">
@@ -74,12 +79,19 @@ const ProductList = ({ onAgregarAlCarrito }) => {
   return (
     <div className="product-list">
       <h2>Lista de Productos</h2>
-      <p>Mostrando {productos.length} productos desde Fake Store API</p>
-      {productos.length === 0 ? (
+      <input
+        type="text"
+        placeholder="Buscar producto..."
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        style={{ marginBottom: '20px', padding: '8px', width: '100%', maxWidth: '400px' }}
+      />
+      <p>Mostrando {productosFiltrados.length} productos desde Fake Store API</p>
+      {productosFiltrados.length === 0 ? (
         <p>No se encontraron productos.</p>
       ) : (
         <div className="product-container">
-          {productos.map((producto) => (
+          {productosFiltrados.map((producto) => (
             <Card
               key={producto.id}
               nombre={producto.nombre}

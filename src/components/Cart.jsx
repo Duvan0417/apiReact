@@ -1,16 +1,17 @@
 import React from 'react';
+import './Cart.css';
 
 const Cart = ({ carrito, quitarDelCarrito }) => (
-  <div style={{ marginTop: '40px' }}>
-    <h3>Carrito de compras ({carrito.length})</h3>
+  <div className="cart-container">
+    <h3 className="cart-title">Carrito de compras ({carrito.length})</h3>
     {carrito.length === 0 ? (
-      <p>El carrito está vacío.</p>
+      <p className="cart-empty">El carrito está vacío.</p>
     ) : (
-      <ul>
+      <ul className="cart-list">
         {carrito.map(item => (
-          <li key={item.id} style={{ marginBottom: '8px' }}>
-            {item.nombre} - ${item.precio}
-            <button onClick={() => quitarDelCarrito(item.id)} style={{ marginLeft: '10px' }}>
+          <li key={item.id} className="cart-item">
+            <span>{item.nombre} <span className="cart-price">${item.precio}</span></span>
+            <button className="cart-remove-btn" onClick={() => quitarDelCarrito(item.id)}>
               Quitar
             </button>
           </li>

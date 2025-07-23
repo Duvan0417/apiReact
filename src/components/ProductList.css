@@ -1,27 +1,56 @@
 .product-list {
-  padding: 20px;
+  padding: 32px 20px;
+  background: #e9fbe5;
+  min-height: 100vh;
+}
+
+.product-list h2 {
+  font-size: 2rem;
+  color: #27ae60;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.product-list input[type="text"] {
+  margin-bottom: 24px;
+  padding: 10px 16px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #b7e4c7;
+  border-radius: 6px;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(39, 174, 96, 0.05);
+  transition: border-color 0.2s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-list input[type="text"]:focus {
+  border-color: #27ae60;
+  outline: none;
 }
 
 .product-container {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .loading {
   text-align: center;
-  padding: 40px;
+  padding: 60px 0;
 }
 
 .spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+  border: 4px solid #eafaf1;
+  border-top: 4px solid #27ae60;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   animation: spin 1s linear infinite;
-  margin: 20px auto;
+  margin: 24px auto;
 }
 
 @keyframes spin {
@@ -32,22 +61,28 @@
 .error {
   text-align: center;
   padding: 40px;
-  color: #e74c3c;
+  color: #14532d;
+  background: #eafaf1;
+  border-radius: 8px;
+  margin-top: 24px;
+  box-shadow: 0 2px 8px rgba(39, 174, 96, 0.08);
 }
 
 .retry-btn {
-  background-color: #3498db;
+  background-color: #27ae60;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 28px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
+  font-size: 16px;
+  margin-top: 16px;
+  box-shadow: 0 2px 8px rgba(39, 174, 96, 0.08);
+  transition: background 0.2s, transform 0.1s;
 }
 
 .retry-btn:hover {
-  background-color: #2980b9;
+  background-color: #14532d;
 }
 
 .retry-btn:active {
