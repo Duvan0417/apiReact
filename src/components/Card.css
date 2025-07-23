@@ -39,3 +39,10 @@
   color: #2c3e50;
   font-size: 18px;
 }
+
+.card p::before {
+  content: '$';
+  color: #27ae60;
+  font-weight: 600;
+  margin-right: 2px;
+}

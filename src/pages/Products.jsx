@@ -1,11 +1,11 @@
 import React from 'react';
 import ProductList from '../components/ProductList';
 
-const Products = () => {
+const Products = ({ onAgregarAlCarrito }) => {
   return (
-    <div>
-      <ProductList />
-    </div>
+    <>
+      <ProductList onAgregarAlCarrito={onAgregarAlCarrito} />
+    </>
   );
 };
 

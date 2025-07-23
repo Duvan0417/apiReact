@@ -2,28 +2,21 @@ import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import './ProductList.css';
 
-const ProductList = () => {
+const ProductList = ({ onAgregarAlCarrito }) => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Función para cargar productos desde la API
     const cargarProductos = async () => {
       try {
         setLoading(true);
         setError(null);
-        
-        // Llamada a la API de Fake Store
         const response = await fetch('https://fakestoreapi.com/products');
-        
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
-        
         const data = await response.json();
-        
-        // Transformar los datos para que coincidan con el formato esperado
         const productosFormateados = data.map(producto => ({
           id: producto.id,
           nombre: producto.title,
@@ -32,7 +25,6 @@ const ProductList = () => {
           descripcion: producto.description,
           categoria: producto.category
         }));
-        
         setProductos(productosFormateados);
       } catch (err) {
         setError(err.message);
@@ -41,16 +33,13 @@ const ProductList = () => {
         setLoading(false);
       }
     };
-
     cargarProductos();
   }, []);
 
-  // Función para recargar productos
   const recargarProductos = () => {
     setProductos([]);
     setLoading(true);
     setError(null);
-    // Volver a ejecutar la carga después de un breve delay
     setTimeout(() => {
       window.location.reload();
     }, 100);
@@ -86,17 +75,17 @@ const ProductList = () => {
     <div className="product-list">
       <h2>Lista de Productos</h2>
       <p>Mostrando {productos.length} productos desde Fake Store API</p>
-      
       {productos.length === 0 ? (
         <p>No se encontraron productos.</p>
       ) : (
         <div className="product-container">
           {productos.map((producto) => (
-            <Card 
-              key={producto.id} 
-              nombre={producto.nombre} 
+            <Card
+              key={producto.id}
+              nombre={producto.nombre}
               precio={producto.precio}
               imagen={producto.imagen}
+              onAgregar={() => onAgregarAlCarrito(producto)}
             />
           ))}
         </div>
